@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Xml;
 using DataSerializacion;
 using TiposSerializacion;
 
@@ -46,7 +47,6 @@ namespace ConsolaSerializacion
             Console.WriteLine("12- Leer JSON.");
             Console.WriteLine("");
             Console.WriteLine(" 0- Fin.");
-            Console.WriteLine("");
 
             var opcion = -1;
 
@@ -54,6 +54,8 @@ namespace ConsolaSerializacion
             {
                 try
                 {
+                    Console.WriteLine("");
+                    Console.Write("Ingrese una opción: ");
                     opcion = Convert.ToInt32(Console.ReadLine());
 
                     switch (opcion)
@@ -128,11 +130,11 @@ namespace ConsolaSerializacion
 
         private static void CrearBinaria()
         {
+            var fechaNacimiento = new DateTime(1961, 4, 4);
             const string nombre = "Cacho";
-            const int edad = 60;
             const string pais = "Argentina";
 
-            var p = new Persona(edad, nombre, pais);
+            var p = new Persona(fechaNacimiento, nombre, pais);
             Console.Write(p.GetDatos());
 
             Console.WriteLine("Serialización Binaria...");
@@ -146,10 +148,10 @@ namespace ConsolaSerializacion
         private static void CrearSoap()
         {
             const string nombre = "Marcelo";
-            const int edad = 23;
+            var fechaNacimiento = new DateTime(1981, 5, 21);
             const string pais = "Argentina";
 
-            var p = new Persona(edad, nombre, pais);
+            var p = new Persona(fechaNacimiento, nombre, pais);
             Console.Write(p.GetDatos());
 
             Console.WriteLine("Serialización SOAP...");
