@@ -11,6 +11,7 @@ namespace ConsolaSerializacion
         private const string BINARIA = "binaria.dat";
         private const string SOAP = "soap.dat";
         private const string XML = "xml.dat";
+        private const string JSON = "json.dat";
         private const string BINARIA_COMPOSICION = "binaria-composicion.dat";
         private const string XML_COMPOSICION = "xml-composicion.dat";
 
@@ -40,6 +41,9 @@ namespace ConsolaSerializacion
             Console.WriteLine("");
             Console.WriteLine(" 9- Crear XML (Composición).");
             Console.WriteLine("10- Leer XML (Composición).");
+            Console.WriteLine("");
+            Console.WriteLine("11- Crear JSON.");
+            Console.WriteLine("12- Leer JSON.");
             Console.WriteLine("");
             Console.WriteLine(" 0- Fin.");
             Console.WriteLine("");
@@ -92,6 +96,14 @@ namespace ConsolaSerializacion
 
                         case 10:
                             LeerXmlComposicion();
+                            break;
+
+                        case 11:
+                            CrearJson();
+                            break;
+
+                        case 12:
+                            LeerJson();
                             break;
 
                         case 0:
@@ -229,6 +241,26 @@ namespace ConsolaSerializacion
             Console.WriteLine("Completado.");
         }
 
+        private static void CrearJson()
+        {
+            var p = new Producto
+            {
+                Nombre = "Manzana",
+                Vencimiento = new DateTime(2021, 12, 10),
+                Precio = 52.25,
+                Calidades = new []{"Regular", "Mala", "Pésima"}
+            };
+
+            Console.Write(p.GetDatos());
+
+            Console.WriteLine("Serialización JSON...");
+
+            var archivo = Path.Combine(RUTA, JSON);
+            new SerializacionJson().Serializar(p, archivo);
+
+            Console.WriteLine("Completado.");
+        }
+
         private static void LeerBinaria()
         {
             var archivo = Path.Combine(RUTA, BINARIA);
@@ -272,6 +304,15 @@ namespace ConsolaSerializacion
 
             Console.WriteLine("Deserialización XML (Composición)...");
             Console.Write(e.GetDatos());
+        }
+
+        private static void LeerJson()
+        {
+            var archivo = Path.Combine(RUTA, JSON);
+            var p = new SerializacionJson().Deserializar(archivo);
+
+            Console.WriteLine("Deserialización JSON...");
+            Console.Write(p.GetDatos());
         }
     }
 }
