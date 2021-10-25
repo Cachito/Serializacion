@@ -148,7 +148,7 @@ namespace ConsolaSerializacion
         private static void CrearSoap()
         {
             const string nombre = "Marcelo";
-            var fechaNacimiento = new DateTime(1981, 5, 21);
+            var fechaNacimiento = new DateTime(1991, 8, 16);
             const string pais = "Argentina";
 
             var p = new Persona(fechaNacimiento, nombre, pais);
@@ -215,8 +215,8 @@ namespace ConsolaSerializacion
         private static void CrearXmlComposicion()
         {
             const string nombre = "Marcelo";
-            const int edad = 22;
-            const string legajo = "MF-1999";
+            const int edad = 30;
+            const string legajo = "MF-1991";
 
             Domicilio d = new Domicilio
             {
